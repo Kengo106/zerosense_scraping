@@ -9,7 +9,13 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
+from dotenv import (
+    find_dotenv,
+    load_dotenv,
+)
+import dj_database_url
+from pathlib import Path
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -23,7 +29,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-*&2_!oq%)3==bat5#@@3s)(nh3qug7jt62cx$lq5%x+%muq92n'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DJANGO_DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = ['*']
 
@@ -37,6 +43,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
+    'django_extensions',
+    'scraping',
 ]
 
 MIDDLEWARE = [
@@ -73,10 +82,21 @@ WSGI_APPLICATION = 'zerosense.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+load_dotenv(find_dotenv())
+DATABASES = {
+    'default': dj_database_url.config(conn_max_age=600),
+}
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get('DATABASE_NAME'),
+        'USER': os.environ.get('DATABASE_USER'),
+        'PASSWORD': os.environ.get('DATABASE_PASSWORD'),
+        'HOST': os.environ.get('DATABASE_HOST'),
+        'PORT': os.environ.get('DATABASE_PORT'),
+        'CONN_MAX_AGE': 600,
+        'CONN_HEALTH_CHECKS': False,
     }
 }
 
@@ -103,9 +123,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ja'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Tokyo'
 
 USE_I18N = True
 
@@ -121,3 +141,20 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CORS_ORIGIN_WHITELIST = [
+    'http://127.0.0.1:4200',
+    'http://localhost:4200',
+    'http://localhost:8000',
+    'http://127.0.0.1:8000',
+    'https://develop-matsushima.an.r.appspot.com',
+]
+
+
+# settings.py
+CSRF_COOKIE_NAME = 'csrftoken'  # デフォルト
+CSRF_HEADER_NAME = 'HTTP_X_CSRFTOKEN'  # デフォルト
+
+print("あああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ")
+print(DATABASES)
+print("あああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ")

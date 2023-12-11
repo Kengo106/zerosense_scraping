@@ -9,6 +9,6 @@ if [ "$DJANGO_DEBUG" = "true" ]; then
 else
     # 本番用コマンド
     echo 'debug=false'
-    gunicorn -b :$PORT django_scraping.wsgi
+    gunicorn -b :$PORT zerosense.wsgi
 fi
  
