@@ -1,0 +1,3 @@
+.env
+**/__pycache__/
+zerosense/db.sqlite3
