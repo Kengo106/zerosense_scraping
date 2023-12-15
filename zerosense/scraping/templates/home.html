@@ -1,0 +1,29 @@
+{% extends "base.html" %} {% block get-grade-button %}
+<div style="padding: 20px">
+  <!-- Adjust top property accordingly -->
+  <form action="getgraderace" method="POST">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-primary">重賞レースを取得</button>
+  </form>
+</div>
+{% endblock %} {% block get-graderesult-button %}
+<div style="padding: 20px">
+  <!-- Adjust top property accordingly -->
+  <form action="getgraderaceresult" method="POST">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-primary">
+      重賞レースの結果を取得
+    </button>
+  </form>
+</div>
+{%endblock %} {% block get-finishvote-button %}
+<div style="padding: 20px">
+  <!-- Adjust top property accordingly -->
+  <form action="finishvote" method="POST">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-primary">
+      対象のレースの投票を締め切る
+    </button>
+  </form>
+</div>
+{%endblock %}

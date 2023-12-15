@@ -9,11 +9,11 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-from dotenv import (
-    find_dotenv,
-    load_dotenv,
-)
-import dj_database_url
+# from dotenv import (
+#     find_dotenv,
+#     load_dotenv,
+# )
+# import dj_database_url
 from pathlib import Path
 import os
 from pathlib import Path
@@ -82,10 +82,10 @@ WSGI_APPLICATION = 'zerosense.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-load_dotenv(find_dotenv())
-DATABASES = {
-    'default': dj_database_url.config(conn_max_age=600),
-}
+# load_dotenv(find_dotenv())
+# DATABASES = {
+#     'default': dj_database_url.config(conn_max_age=600),
+# }
 
 DATABASES = {
     'default': {

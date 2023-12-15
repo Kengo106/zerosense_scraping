@@ -24,7 +24,7 @@ RUN cd /opt/chrome/ && unzip chromedriver_linux64.zip && chmod +x chromedriver
 ENV PATH $PATH:/opt/chrome
 
 # アプリケーションのファイルをコンテナにコピー 
-#最初の . はホストマシンの現在のディレクトリを指し、二番目の . はコンテナ内の作業ディレクトリ（WORKDIR で定義されたディレクトリ）を指す
+# 最初の . はホストマシンの現在のディレクトリを指し、二番目の . はコンテナ内の作業ディレクトリ（WORKDIR で定義されたディレクトリ）を指す
 COPY . . 
 
 CMD ["/bin/bash"]
