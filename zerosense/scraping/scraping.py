@@ -26,7 +26,7 @@ def initialize_browser():
     # script_dir = os.path.dirname(os.path.abspath(__file__))
 
     # WebDriverのパスを指定
-    webdriver_path = os.path.join("/opt/chrome", "chromedriver")
+    webdriver_path = os.path.join("/opt/chrome/chromedriver-linux64", "chromedriver")
 
     # Chromeの実行可能ファイルのパスを指定
     # chrome_options = Options()
@@ -34,6 +34,9 @@ def initialize_browser():
 
     # Chromeのヘッドレスオプションを設定する(GUIなし)
     chrome_options = Options()
+    chrome_options.add_argument("--remote-debugging-port=9222")
+    chrome_options.add_argument("--disable-gpu")
+    chrome_options.binary_location = "/opt/chrome/chrome-linux64/chrome"
     chrome_options.add_argument('--headless')
     chrome_options.add_argument("--no-sandbox")  # サンドボックス無効化
     chrome_options.add_argument("--disable-dev-shm-usage")  # /dev/shmパーティションの使用を制限
