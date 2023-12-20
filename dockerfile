@@ -53,4 +53,4 @@ ENV PATH $PATH:/opt/chrome
 # 最初の . はホストマシンの現在のディレクトリを指し、二番目の . はコンテナ内の作業ディレクトリ（WORKDIR で定義されたディレクトリ）を指す
 COPY . . 
 
-CMD ["/bin/bash"]
+CMD [ "/usr/src/app/entrypoint.sh" ]
