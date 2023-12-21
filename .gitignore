@@ -2,3 +2,5 @@
 **/__pycache__/
 zerosense/db.sqlite3
 .devcontainer
+key.json
+secrets.tfvars

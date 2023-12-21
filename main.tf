@@ -1,5 +1,8 @@
 provider "google" {
-  region = "asia-northeast1"
+  # credentials = file("key.json")
+  credentials = var.api_key
+  region      = "asia-northeast1"
+  project     = "develop-matsushima"
 }
 
 resource "google_cloud_run_service" "default" {
@@ -9,14 +12,21 @@ resource "google_cloud_run_service" "default" {
   template {
     metadata {
       annotations = {
-        "autoscaling.knative.dev/minScale"  = "0"
-        "autoscaling.knative.dev/maxScale"  = "1"
+        # インスタンスの最小数
+        "autoscaling.knative.dev/minScale" = "0"
+        # インスタンスの最大数
+        "autoscaling.knative.dev/maxScale" = "1"
+        #  リクエストタイムアウト
         "run.googleapis.com/timeoutSeconds" = "300"
+
+
       }
     }
-    spec {
+    spec { # インスタンスが同時に処理するリクエスト数
+      container_concurrency = 1
       containers {
-        image = "gcr.io/develop-matsushima/scraping:latest"
+        # ビルドするイメージを指定
+        image = "asia.gcr.io/develop-matsushima/scraping:latest"
 
         resources {
           limits = {
@@ -31,17 +41,17 @@ resource "google_cloud_run_service" "default" {
 
         env {
           name  = "DATABASE_NAME"
-          value = "zerosense"
+          value = var.db_name
         }
 
         env {
           name  = "DATABASE_USER"
-          value = "kengo"
+          value = var.db_user
         }
 
         env {
           name  = "DATABASE_PASSWORD"
-          value = "5W69E2yH7X"
+          value = var.db_password
         }
 
         env {
@@ -51,12 +61,12 @@ resource "google_cloud_run_service" "default" {
 
         env {
           name  = "DJANGO_DEBUG"
-          value = "False"
+          value = var.django_debug
         }
 
         env {
           name  = "DATABASE_HOST"
-          value = "/cloudsql/develop-matsushima:asia-northeast1:develop"
+          value = var.db_host
         }
 
         env {
@@ -70,9 +80,10 @@ resource "google_cloud_run_service" "default" {
   }
 
   traffic {
+    # parcent%のトラフィックを指定のリビジョンに送る
     percent         = 100
     latest_revision = true
   }
-
+  # リビジョン名を自動的に生成
   autogenerate_revision_name = true
 }
