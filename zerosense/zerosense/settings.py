@@ -154,7 +154,8 @@ CORS_ORIGIN_WHITELIST = [
 # settings.py
 CSRF_COOKIE_NAME = 'csrftoken'  # デフォルト
 CSRF_HEADER_NAME = 'HTTP_X_CSRFTOKEN'  # デフォルト
+CSRF_TRUSTED_ORIGINS = ['https://zerosense-scraping-xmnv3gfrbq-an.a.run.app']
 
 print("あああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ")
-print(DATABASES)
+print(CSRF_TRUSTED_ORIGINS)
 print("あああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ")
