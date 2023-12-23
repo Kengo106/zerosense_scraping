@@ -1,8 +1,8 @@
 provider "google" {
   # credentials = file("key.json")
-  credentials = var.api_key
-  region      = "asia-northeast1"
-  project     = "develop-matsushima"
+  # credentials = var.api_key
+  region  = "asia-northeast1"
+  project = "develop-matsushima"
 }
 
 resource "google_cloud_run_service" "default" {
@@ -61,7 +61,7 @@ resource "google_cloud_run_service" "default" {
 
         env {
           name  = "DJANGO_DEBUG"
-          value = var.django_debug
+          value = "f"
         }
 
         env {
