@@ -87,3 +87,5 @@ resource "google_cloud_run_service" "default" {
   # リビジョン名を自動的に生成
   autogenerate_revision_name = true
 }
+
+# terraform { cloud { organization = "Kengo106" workspaces { name = "example-workspace" } } }

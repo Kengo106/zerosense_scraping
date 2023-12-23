@@ -24,3 +24,4 @@ variable "django_debug" {
   description = "django debug"
   type        = string
 }
+
