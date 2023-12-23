@@ -1,4 +1,5 @@
 provider "google" {
+  # apikeyはterraformの terraform variables にて指定する。(jsonを一行にして入力する必要あり)
   # credentials = file("key.json")
   # credentials = var.api_key
   region  = "asia-northeast1"
