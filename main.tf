@@ -61,7 +61,7 @@ resource "google_cloud_run_service" "default" {
 
         env {
           name  = "DJANGO_DEBUG"
-          value = var.django_debug
+          value = "f"
         }
 
         env {
