@@ -1,7 +1,7 @@
-variable "api_key" {
-  description = "Google Cloud service account key JSON"
-  type        = string
-}
+# variable "api_key" {
+#   description = "Google Cloud service account key JSON"
+#   type        = string
+# }
 variable "db_name" {
   description = "Database name"
   type        = string
