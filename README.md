@@ -1,3 +1,3 @@
 # zerosense_scraping
 
-zerosenseのスクレイビング用アプリケーションです
+zerosense のスクレイビング用アプリケーションです

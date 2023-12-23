@@ -9,6 +9,8 @@ if [ "$DJANGO_DEBUG" = "True" ]; then
 else
     # 本番用コマンド
     echo 'debug=false'
+    cd zerosense
+    ls
     gunicorn -b :$PORT zerosense.wsgi
 fi
  
