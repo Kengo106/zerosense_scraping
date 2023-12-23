@@ -4,3 +4,5 @@ zerosense/db.sqlite3
 .devcontainer
 key.json
 secrets.tfvars
+*.tfstate
+*.tfstate.*

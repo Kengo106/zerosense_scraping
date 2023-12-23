@@ -10,5 +10,5 @@ urlpatterns = [
          name="grade-race-result"),
     path('finishvote', FinishVoteView.as_view(), name='finish-vote'),
     path('admin',admin.site.urls),
-    path('',RedirectView.as_view(url='home')),
+    path('',RedirectView.as_view(url='/home')),
 ]
