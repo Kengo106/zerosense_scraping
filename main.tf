@@ -7,7 +7,7 @@ provider "google" {
 }
 
 resource "google_cloud_run_service" "default" {
-  name     = "scraping"
+  name     = "zerosense_scraping"
   location = "asia-northeast1"
 
   template {
