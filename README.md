@@ -1,4 +1,4 @@
 # zerosense_scraping
 
-zerosense のスクレイビング用アプリケーションです<br>
+zerosense のスクレイピング用アプリケーションです<br>
 zerosenseはこちら：https://github.com/Kengo106/zerosense
