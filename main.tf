@@ -75,6 +75,11 @@ resource "google_cloud_run_service" "default" {
           value = "8080"
         }
 
+        env {
+          name  = "$LOCAL"
+          value = "False"
+        }
+
 
       }
     }
