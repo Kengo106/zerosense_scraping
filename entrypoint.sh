@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 環境変数DJANGO_DEBUGをチェック
-echo "$LOCAL"
+echo "$HOST"
 if [ "$LOCAL" = "True" ]; then
     開発用コマンド
     echo 'debug=true'
