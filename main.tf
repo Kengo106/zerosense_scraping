@@ -77,7 +77,7 @@ resource "google_cloud_run_service" "default" {
 
         env {
           name  = "$LOCAL"
-          value = "False"
+          value = "false"
         }
 
 
