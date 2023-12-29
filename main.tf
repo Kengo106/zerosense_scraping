@@ -4,6 +4,7 @@ provider "google" {
   # credentials = var.api_key
   region  = "asia-northeast1"
   project = "develop-matsushima"
+
 }
 
 resource "google_vpc_access_connector" "vpc_connector" { # VPCコネクタを定義
@@ -11,6 +12,7 @@ resource "google_vpc_access_connector" "vpc_connector" { # VPCコネクタを定
   region        = "asia-northeast1" # リージョンはcloudrun と同じにする
   network       = "default"
   ip_cidr_range = "10.221.0.0/28" # VPCネットワークのサブネットと重複しない範囲を選択
+
 }
 
 
@@ -19,6 +21,7 @@ resource "google_cloud_run_service" "default" {
   location = "asia-northeast1"
 
   template {
+
     metadata {
       annotations = {
         # インスタンスの最小数
@@ -33,9 +36,7 @@ resource "google_cloud_run_service" "default" {
     }
 
     spec {
-      vpc_access {
-        connector = "zerosense-vpc-connector"
-      }
+
       container_concurrency = 1 # インスタンスが同時に処理するリクエスト数 
       containers {
         # ビルドするイメージを指定
@@ -96,6 +97,7 @@ resource "google_cloud_run_service" "default" {
 
 
       }
+
     }
   }
 
