@@ -6,6 +6,14 @@ provider "google" {
   project = "develop-matsushima"
 }
 
+resource "google_vpc_access_connector" "vpc_connector" { # VPCコネクタを定義
+  name          = "zerosense-vpc-connector"
+  region        = "asia-northeast1" # リージョンはcloudrun と同じにする
+  network       = "default"
+  ip_cidr_range = "10.221.0.0/28" # VPCネットワークのサブネットと重複しない範囲を選択
+}
+
+
 resource "google_cloud_run_service" "default" {
   name     = "zerosense-scraping"
   location = "asia-northeast1"
@@ -23,11 +31,17 @@ resource "google_cloud_run_service" "default" {
 
       }
     }
-    spec { # インスタンスが同時に処理するリクエスト数
-      container_concurrency = 1
+
+    spec {
+      vpc_access {
+        connector = "zerosense-vpc-connector"
+      }
+      container_concurrency = 1 # インスタンスが同時に処理するリクエスト数 
       containers {
         # ビルドするイメージを指定
         image = "asia.gcr.io/develop-matsushima/scraping:latest"
+        # VPCコネクタの設定を追加
+
 
         resources {
           limits = {
