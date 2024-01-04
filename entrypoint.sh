@@ -6,7 +6,7 @@ if [ "$LOCAL" = "True" ]; then
     開発用コマンド
     echo 'debug=true'
     cd zerosense
-    python manage.py runserver 0.0.0.0:8000
+    python manage.py runserver 0.0.0.0:$PORT
     # cd zerosense
     # ls
     # gunicorn -b :$PORT zerosense.wsgi

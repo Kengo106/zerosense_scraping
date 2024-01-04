@@ -29,7 +29,7 @@ class HorsePlace(models.Model):
     
     class Meta:
         managed = False
-        db_table = 'app1_horsplase'
+        db_table = 'app1_horseplase'
     horse = models.ForeignKey(Horse, on_delete=models.CASCADE)
     place = models.IntegerField(null=True)
 
@@ -38,7 +38,7 @@ class Odds(models.Model):
     
     class Meta:
         managed = False
-        db_table = 'app1_horsplase'
+        db_table = 'app1_odds'
     race = models.ForeignKey(Race, on_delete=models.CASCADE)
     tan = models.IntegerField(default=0)
     fuku_1 = models.IntegerField(default=0)

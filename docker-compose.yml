@@ -5,7 +5,7 @@ services:
     env_file:
       - .env
     ports:
-      - "8000:8000" # Windows：dockerコンテナ
+      - "$PORT:$PORT" # Windows：dockerコンテナ
     volumes:
       - .:/usr/src/app # ホストの現在のディレクトリをコンテナの/usr/src/appにマウントする
     command: /usr/src/app/entrypoint.sh # コンテナ起動時に実行されるコマンドを指定
