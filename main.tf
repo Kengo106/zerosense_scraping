@@ -29,7 +29,8 @@ resource "google_cloud_run_service" "default" {
         # インスタンスの最大数
         "autoscaling.knative.dev/maxScale" = "1"
         #  リクエストタイムアウト
-        "run.googleapis.com/timeoutSeconds"     = "300"
+        "run.googleapis.com/timeoutSeconds" = "300"
+        # Cloud SQLインスタンスへの接続設定
         "run.googleapis.com/cloudsql-instances" = "develop-matsushima:asia-northeast1:develop"
       }
     }
@@ -91,7 +92,7 @@ resource "google_cloud_run_service" "default" {
 
         env {
           name  = "$LOCAL"
-          value = "False"
+          value = "false"
         }
 
 
