@@ -13,25 +13,28 @@ import os
 from django.shortcuts import render
 
 from .scraping import initialize_browser, scrape_grade_race, scrape_grade_race_result
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
+
 
 def home_site_view(request):
     return render(request, 'home.html')
 
-@csrf_exempt
+@method_decorator(csrf_exempt, name='dispatch')
 class GradeRaceScraping(View):
     def post(self, request):
         browser = initialize_browser()
         scrape_grade_race(browser)
         return render(request, "finish.html")
 
-@csrf_exempt
+@method_decorator(csrf_exempt, name='dispatch')
 class GradeRaceResultScraping(View):
     def post(self, request):
         browser = initialize_browser()
         scrape_grade_race_result(browser)
         return render(request, "finish.html")
 
-@csrf_exempt
+@method_decorator(csrf_exempt, name='dispatch')
 class FinishVoteView(View):
     def post(self, request):
         utc_now = timezone.now()
