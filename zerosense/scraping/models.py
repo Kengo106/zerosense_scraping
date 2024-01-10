@@ -29,7 +29,7 @@ class HorsePlace(models.Model):
     
     class Meta:
         managed = False
-        db_table = 'app1_horseplase'
+        db_table = 'app1_horseplace'
     horse = models.ForeignKey(Horse, on_delete=models.CASCADE)
     place = models.IntegerField(null=True)
 
