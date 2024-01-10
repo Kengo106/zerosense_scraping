@@ -43,7 +43,7 @@ class FinishVoteView(View):
         now_date = jst_now.date()
         print(jst_now, now_date)
         vote_deadline_plusone = (jst_now + timedelta(hours=1)).time()
-        if jst_now.time() > vote_deadline_plusone:
+        if jst_now.time() > vote_deadline_plusone: # 23時以降は1足すと0時になるため
             races = Race.objects.filter(
                 Q(race_date=now_date)
             )
