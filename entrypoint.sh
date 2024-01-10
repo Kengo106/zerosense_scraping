@@ -15,6 +15,6 @@ else
     echo 'debug=false'
     cd zerosense
     ls
-    gunicorn -b :$PORT zerosense.wsgi
+    gunicorn -b :$PORT -t 500 zerosense.wsgi
 fi
  

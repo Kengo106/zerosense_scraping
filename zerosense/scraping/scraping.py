@@ -315,7 +315,7 @@ def scrape_grade_race_result(browser):
                 jst_now = utc_now.astimezone(jst)
                 now_date = jst_now.date()
                 update_count = Race.objects.filter(
-                    race_name=grade_race_odds["race_name"], race_date__lte=now_date - timedelta(day=4)).update(is_votable=0)
+                    race_name=grade_race_odds["race_name"], race_date__lte=now_date - timedelta(days=4)).update(is_votable=0)
                 print(update_count)
                 race = Race.objects.get(race_name=grade_race_odds["race_name"])
                 Odds.objects.update_or_create(
